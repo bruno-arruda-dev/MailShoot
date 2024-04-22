@@ -5,6 +5,7 @@ import { mailShootAdminController } from "../controllers/MailShootAdminControlle
 import z from "zod";
 
 const bodySchema = z.object({
+    password: z.string(),
     from: z.string().email().nullish(),
     to: z.string().email(),
     subject: z.string().min(4),
@@ -33,8 +34,13 @@ export async function mailShoot(app: FastifyInstance) {
                     200: z.object({
                         error: z.boolean(),
                         message: z.string()
+                    }),
+                    401: z.object({
+                        error: z.boolean(),
+                        message: z.string()
                     })
-                }
+                },
+                
             }
         }, async (request: FastifyRequest<BodyInterface>, reply: FastifyReply) => {
             mailShootAdminController(request, reply)

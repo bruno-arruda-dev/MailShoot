@@ -8,6 +8,7 @@ POST {{HOST}}/admin
 Content-Type: application/json
 
 {
+    "password": "123456",
     "from": "bruno.arrm@gmail.com",
     "to": "bruno.arrm@gmail.com",
     "subject": "Assunto do email",
