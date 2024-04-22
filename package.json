@@ -1,5 +1,5 @@
 {
-  "name": "mailshoot",
+  "name": "mailshooter",
   "version": "1.0.0",
   "description": "API para disparo de emails.",
   "main": "index.js",
@@ -14,7 +14,9 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@types/nodemailer": "^6.4.14",
     "fastify": "^4.26.2",
-    "fastify-type-provider-zod": "^1.1.9"
+    "fastify-type-provider-zod": "^1.1.9",
+    "nodemailer": "^6.9.13"
   }
 }
