@@ -1,0 +1,15 @@
+@HOST = http://localhost:3333
+
+###
+GET {{HOST}}
+
+###
+POST {{HOST}}/admin
+Content-Type: application/json
+
+{
+    "from": "bruno.arrm@gmail.com",
+    "to": "bruno.arrm@gmail.com",
+    "subject": "Assunto do email",
+    "message": "Aqui vai a mensagem do email"
+}

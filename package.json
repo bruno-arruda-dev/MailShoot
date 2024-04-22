@@ -1,0 +1,20 @@
+{
+  "name": "mailshoot",
+  "version": "1.0.0",
+  "description": "API para disparo de emails.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch --env-file .env src/server.ts"
+  },
+  "author": "Bruno Arruda Magalhães",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "fastify": "^4.26.2",
+    "fastify-type-provider-zod": "^1.1.9"
+  }
+}
