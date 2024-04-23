@@ -1,31 +1,11 @@
+import z from "zod";
 import { FastifyInstance, FastifyReply, FastifyRequest, RouteGenericInterface } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
-import { devResponse } from "../constants/dev-response-constant";
 import { mailShootAdminController } from "../controllers/mailShooter-admin-controller";
-import z from "zod";
 import { mailShootTesterController } from "../controllers/mailShooter-tester-controller";
-
-export const bodyAdminSchema = z.object({
-    password: z.string(),
-    title: z.string().nullish(),
-    subtitle: z.string().nullish(),
-    exibitionNameFrom: z.string().nullish(),
-    from: z.string().email().nullish(),
-    to: z.string().email(),
-    subject: z.string().min(4),
-    message: z.string().min(4),
-});
-
-export const bodyTesterSchema = z.object({
-    password: z.string(),
-    title: z.string().nullish(),
-    subtitle: z.string().nullish(),
-    exibitionNameFrom: z.string(),
-    from: z.string().email(),
-    to: z.string().email(),
-    subject: z.string().min(4),
-    message: z.string().min(4),
-});
+import { responseStatusOkSchema } from "../schemas/home-route-schemas";
+import { bodyAdminSchema } from "../schemas/admin-route-schemas";
+import { bodyTesterSchema } from "../schemas/test-route-schema";
 
 export type BodyAdminType = z.infer<typeof bodyAdminSchema>;
 export type BodyTesterType = z.infer<typeof bodyAdminSchema>;
@@ -44,10 +24,14 @@ export async function mailShoot(app: FastifyInstance) {
         .get('/', {
             schema: {
                 summary: "Returns usage examples for this API endpoint.",
-                tags: ['Public Endpoints']
+                tags: ['Public Endpoints'],
+                response: {
+                    200: responseStatusOkSchema,
+                },
             }
         }, async (request, reply) => {
-            return reply.status(200).send(devResponse);
+            const response = responseStatusOkSchema.parse({})
+            return reply.status(200).send(response);
         })
 
     app
@@ -79,7 +63,7 @@ export async function mailShoot(app: FastifyInstance) {
             schema: {
                 summary: "Endpoint reserved for tester users.",
                 tags: ['Private Endpoints'],
-                body: bodyAdminSchema,
+                body: bodyTesterSchema,
                 response: {
                     200: z.object({
                         error: z.boolean(),
