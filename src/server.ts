@@ -3,12 +3,14 @@ import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUI from "@fastify/swagger-ui";
 import { serializerCompiler, validatorCompiler, jsonSchemaTransform } from 'fastify-type-provider-zod';
 import { mailShoot } from "./routes/MailShooter";
+import { errorHandler } from "./error-handler";
 
 const app = fastify();
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
+app.setErrorHandler(errorHandler);
 
 app.register(fastifySwagger, {
     swagger: {
@@ -27,6 +29,7 @@ app
 .register(fastifySwaggerUI, {
     routePrefix: 'docs',
 })
+
 
 app.register(mailShoot);
 
