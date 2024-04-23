@@ -40,7 +40,13 @@ export interface BodyTesterInterface extends RouteGenericInterface {
 export async function mailShoot(app: FastifyInstance) {
 
     app
-        .get('/', async (request, reply) => {
+        .withTypeProvider<ZodTypeProvider>()
+        .get('/', {
+            schema: {
+                summary: "Returns usage examples for this API endpoint.",
+                tags: ['Public Endpoints']
+            }
+        }, async (request, reply) => {
             return reply.status(200).send(devResponse);
         })
 
@@ -48,6 +54,8 @@ export async function mailShoot(app: FastifyInstance) {
         .withTypeProvider<ZodTypeProvider>()
         .post<{ Body: BodyAdminType }>('/admin', {
             schema: {
+                summary: "Endpoint reserved for administrators.",
+                tags: ['Private Endpoints'],
                 body: bodyAdminSchema,
                 response: {
                     200: z.object({
@@ -69,6 +77,8 @@ export async function mailShoot(app: FastifyInstance) {
         .withTypeProvider<ZodTypeProvider>()
         .post<{ Body: BodyAdminType }>('/test', {
             schema: {
+                summary: "Endpoint reserved for tester users.",
+                tags: ['Private Endpoints'],
                 body: bodyAdminSchema,
                 response: {
                     200: z.object({
