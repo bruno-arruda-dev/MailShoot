@@ -10,7 +10,6 @@ const app = fastify();
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
-app.setErrorHandler(errorHandler);
 
 app.register(fastifySwagger, {
     swagger: {
@@ -33,10 +32,12 @@ app
 
 app.register(mailShoot);
 
-app
-    .listen({ port: 3333 })
-    .then(() => {
+app.setErrorHandler(errorHandler);
 
+app
+.listen({ port: 3333 })
+.then(() => {
+    
         console.log("MailShoot is ready to shoot on port 3333! 😎");
 
     })

@@ -23,7 +23,7 @@ POST {{HOST}}/test
 Content-Type: application/json
 
 {
-    "password": 654321,
+    "password": "654321",
     "title": "MailShooter",
     "subtitle": "Este é um teste de email!",
     "exibitionNameFrom": "Bruno Arruda",

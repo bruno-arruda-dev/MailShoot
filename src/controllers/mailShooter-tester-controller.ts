@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { BodyAdminInterface } from "../routes/MailShooter";
 import { mailShootTesterService } from "../services/mailShooter-tester-service";
-import { Unautenticated } from "../routes/_errors/unauthenticated";
+import { Unauthenticated } from "../routes/_errors/unauthenticated";
 
 const tester_key = process.env.TESTER_KEY;
 
@@ -9,7 +9,7 @@ export async function mailShootTesterController(request: FastifyRequest<BodyAdmi
     const { password, from, to, subject, message, title, subtitle, exibitionNameFrom } = request.body
 
     if (password !== tester_key) {
-        throw new Unautenticated("Incorrect tester password.");
+        return reply.send(new Unauthenticated("Senha de tester não confere."));
     }
 
     const data = {

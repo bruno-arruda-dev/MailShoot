@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { BodyAdminInterface } from "../routes/MailShooter";
 import { mailShootAdminService } from "../services/mailShooter-admin-service";
-import { Unautenticated } from "../routes/_errors/unauthenticated";
+import { Unauthenticated } from "../routes/_errors/unauthenticated";
 
 const admin_key = process.env.ADMIN_KEY;
 
@@ -9,7 +9,7 @@ export async function mailShootAdminController(request: FastifyRequest<BodyAdmin
     const { password, from, to, subject, message, title, subtitle, exibitionNameFrom } = request.body
 
     if (password !== admin_key) {
-        throw new Unautenticated("Incorrect admin password." );
+        return reply.send(new Unauthenticated("Senha de administrador não confere."));
     }
 
     const data = {
