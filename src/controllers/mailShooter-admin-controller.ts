@@ -9,7 +9,7 @@ export async function mailShootAdminController(request: FastifyRequest<BodyAdmin
     const { password, from, to, subject, message, title, subtitle, exibitionNameFrom } = request.body
 
     if (password !== admin_key) {
-        return reply.send(new Unauthenticated(`Senha de administrador não confere. ${admin_key}`));
+        return reply.send(new Unauthenticated(`Senha de administrador não confere.`));
     }
 
     const data = {
