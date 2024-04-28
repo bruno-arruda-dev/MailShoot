@@ -46,17 +46,8 @@ Depois abra a pasta do projeto e instale as dependências:
 ```bash
   npm install
 ```
-Crie um arquivo .env e configure da seguinte forma:
-```bash
-ADMIN_KEY=<SUA SENHA DE ADMIN AQUI>
-TESTER_KEY=<SUA SENHA DE TESTER AQUI>
-HOST=<HOST DO SEU SERVIDOR DE EMAIL>
-PORT=<PORTA>
-SECURE=<SERVIDOR EXIGE SECURE MODE? TRUE OU FALSE>
-SERVICE=<NOME DO SEU SERVIÇO DE EMAIL>
-USER=<USUÁRIO>
-PASSWORD=<SENHA>
-```
+
+
 Execute o projeto:
 ```bash
 npm run dev
