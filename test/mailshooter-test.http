@@ -1,5 +1,5 @@
 # @HOST = http://localhost:3333
-@HOST = mail-shoot.vercel.app
+@HOST = https://mail-shoot.vercel.app/
 
 ###
 GET {{HOST}}
